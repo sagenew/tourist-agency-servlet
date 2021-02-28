@@ -1,0 +1,18 @@
+<footer class="container">
+    <c:if test="${sessionScope.authUser != null}">
+        <p>
+    <span>
+      <fmt:message key="footer.logged_user"/>
+    </span>
+            <span class="mr-4">
+                    ${sessionScope.authUser.getUsername()}
+            </span>
+            <span>
+      <fmt:message key="footer.roles"/>
+    </span>
+            <span class="mr-4">
+                    ${sessionScope.authUser.getAuthorities()}
+            </span>
+        </p>
+    </c:if>
+</footer>

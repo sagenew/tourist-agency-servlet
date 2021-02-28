@@ -1,0 +1,75 @@
+<%--suppress CheckImageSize, CheckImageSize --%>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand" href="${pageContext.request.contextPath}/app/index">
+        <img src="${pageContext.request.contextPath}/images/travel.png" class="d-inline-block align-top"
+             width="30" height="30" alt="icon">
+        <fmt:message key="index.main.name"/>
+    </a>
+    <div class="collapse navbar-collapse" id="navbars">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="${pageContext.request.contextPath}/app/index">
+                    <fmt:message key="link.home"/>
+                </a>
+            </li>
+            <c:if test="${sessionScope.authUser != null}">
+                <li class="nav-item active">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/app/profile">
+                        <fmt:message key="link.profile"/>
+                    </a>
+                </li>
+            </c:if>
+            <li class="nav-item active">
+                <a class="nav-link" href="${pageContext.request.contextPath}/app/tours">
+                    <fmt:message key="link.all_tours"/>
+                </a>
+            </li>
+            <ta:hasAuthority authority="ADMIN">
+                <li class="nav-item active">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/app/tours/orders">
+                        <fmt:message key="link.all_orders"/>
+                    </a>
+                </li>
+            </ta:hasAuthority>
+            <ta:hasAuthority authority="ADMIN">
+                <li class="nav-item active">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/app/users">
+                        <fmt:message key="link.all_users"/>
+                    </a>
+                </li>
+            </ta:hasAuthority>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="?lang=en">
+                    <img src="${pageContext.request.contextPath}/images/uk_flag.png"
+                         class="d-inline-block align-top" alt="" width="30" height="30">
+                </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="?lang=ua">
+                    <img src="${pageContext.request.contextPath}/images/ua_flag.png"
+                         class="d-inline-block align-top" alt="" width="30" height="30">
+                </a>
+            </li>
+        </ul>
+        <c:if test="${sessionScope.authUser == null}">
+            <div class="form-inline my-2 my-lg-0">
+                <a href="${pageContext.request.contextPath}/app/registration"
+                   class="btn btn-outline-primary mr-3 my-2 my-sm-0">
+                    <fmt:message key="button.sign_up"/>
+                </a>
+                <a href="${pageContext.request.contextPath}/app/login" class="btn btn-primary mr-3 my-2 my-sm-0">
+                    <fmt:message key="button.sign_in"/>
+                </a>
+            </div>
+        </c:if>
+        <c:if test="${sessionScope.authUser != null}">
+            <div class="form-inline my-2 my-lg-0">
+                <a href="${pageContext.request.contextPath}/app/logout" class="btn btn-primary my-2 my-sm-0">
+                    <fmt:message key="button.sign_out"/>
+                </a>
+            </div>
+        </c:if>
+    </div>
+</nav>
