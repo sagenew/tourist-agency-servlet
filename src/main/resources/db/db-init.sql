@@ -1,5 +1,5 @@
-INSERT INTO users (id, username, password, full_name, email, bio, discount) VALUES (1, 'admin', '827ccb0eea8a706c4c34a16891f84e7b', 'Arthur Humenchuk', 'railwaytan@gmail.com', '21 y.o. designer from San Francisco', 0);
-INSERT INTO users (id, username, password, full_name, email, bio, discount) VALUES (2, 'user1', '827ccb0eea8a706c4c34a16891f84e7b', 'user userino', 'user@gmail.com', '', 0);
+INSERT INTO users (id, username, password, full_name, email, bio, discount, enabled) VALUES (1, 'admin', '827ccb0eea8a706c4c34a16891f84e7b', 'Arthur Humenchuk', 'railwaytan@gmail.com', '21 y.o. designer from San Francisco', 0, true);
+INSERT INTO users (id, username, password, full_name, email, bio, discount, enabled) VALUES (2, 'user1', '827ccb0eea8a706c4c34a16891f84e7b', 'user userino', 'user@gmail.com', '', 0, true);
 
 INSERT INTO user_authorities (user_id, authorities) VALUES (1, 'USER');
 INSERT INTO user_authorities (user_id, authorities) VALUES (1, 'ADMIN');
