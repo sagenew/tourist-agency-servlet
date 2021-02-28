@@ -30,13 +30,11 @@
                 </div>
                 <div class="card-body">
                     <ta:hasAuthority authority="ADMIN">
-                        <div class="row">
-                            <div class="col-md-6 mt-1">
-                                <a href="${pageContext.request.contextPath}/app/tours/add"
-                                   class="btn btn-primary" type="submit">
-                                    <fmt:message key="tours.button.add"/>
-                                </a>
-                            </div>
+                        <div class="my-1">
+                            <a href="${pageContext.request.contextPath}/app/tours/add"
+                               class="btn btn-primary" type="submit">
+                                <fmt:message key="tours.button.add"/>
+                            </a>
                         </div>
                     </ta:hasAuthority>
                     <c:if test="${!requestScope.tours.isEmpty()}">
@@ -78,7 +76,7 @@
                                         <fmt:message key="tours.is_hot"/>
                                     </a>
                                 </th>
-                                <ta:hasAuthority authority="ADMIN">
+                                <ta:hasAuthority authority="MANAGER">
                                     <th>
                                         <fmt:message key="tours.make_hot.label"/>
                                     </th>
@@ -126,7 +124,7 @@
                                                             <div class="card-text">
                                                                 <span class="text-primary"><fmt:message
                                                                         key="tours.modal.price"/></span>
-                                                                <span>${tour.price}</span>
+                                                                <span><fmt:formatNumber type="number" maxFractionDigits="2" value="${tour.price}"/></span>
                                                             </div>
                                                             <div class="card-text">
                                                                 <span class="text-primary"><fmt:message
@@ -175,7 +173,7 @@
                                     </div>
                                     <!--End modal window-->
                                     <td>${tour.type.toString()}</td>
-                                    <td>${tour.price}</td>
+                                    <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${tour.price}"/></td>
                                     <td>${tour.groupSize}</td>
                                     <td>${tour.hotel.toString()}</td>
                                     <td>
@@ -190,7 +188,7 @@
                                                  height="30" alt="hot_icon_true">
                                         </c:if>
                                     </td>
-                                    <ta:hasAuthority authority="ADMIN">
+                                    <ta:hasAuthority authority="MANAGER">
                                         <td>
                                             <a href="${pageContext.request.contextPath}/app/tours/mark-hot?id=${tour.id}&page=${requestScope.currentPage}&size=${requestScope.pageSize}&sortCol=${requestScope.sortCol}&sortDir=${requestScope.sortDir}"
                                                class="btn btn-primary">

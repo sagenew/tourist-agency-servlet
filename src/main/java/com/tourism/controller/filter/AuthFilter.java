@@ -38,6 +38,20 @@ public class AuthFilter implements Filter {
             "/tours/orders/delete",
             "/tours/orders/set-discount");
 
+    private final List<String> managerPaths = Arrays.asList(
+            "/",
+            "/index",
+            "/logout",
+            "/profile",
+            "/tours",
+            "/tours/mark-hot",
+            "/tours/orders",
+            "/tours/orders/add",
+            "/tours/orders/mark-paid",
+            "/tours/orders/mark-denied",
+            "/tours/orders/delete",
+            "/tours/orders/set-discount");
+
     private final List<String> userPaths = Arrays.asList(
             "/",
             "/index",
@@ -59,6 +73,7 @@ public class AuthFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         authPaths.put(Authority.USER, userPaths);
+        authPaths.put(Authority.MANAGER, managerPaths);
         authPaths.put(Authority.ADMIN, adminPaths);
     }
 

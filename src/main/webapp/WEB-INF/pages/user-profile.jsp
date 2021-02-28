@@ -116,7 +116,7 @@
                                                 <div class="card-text">
                                                                 <span class="text-primary"><fmt:message
                                                                         key="tours.modal.price"/></span>
-                                                    <span>${order.tour.price}</span>
+                                                    <span><fmt:formatNumber type="number" maxFractionDigits="2" value="${order.tour.price}"/></span>
                                                 </div>
                                                 <div class="card-text">
                                                                 <span class="text-primary"><fmt:message
@@ -148,9 +148,9 @@
                             </div>
                         </div>
                         <!--End modal window-->
-                        <td>${order.price}</td>
-                        <td>${order.discount}</td>
-                        <td>${order.fixedPrice}</td>
+                        <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${order.price}"/></td>
+                        <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${order.discount}"/></td>
+                        <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${order.fixedPrice}"/></td>
                         <td class="text-center">
                             <c:if test="${order.pending}">
                             <button class="btn btn-info active btn-block">

@@ -24,7 +24,7 @@
                     <fmt:message key="link.all_tours"/>
                 </a>
             </li>
-            <ta:hasAuthority authority="ADMIN">
+            <ta:hasAuthority authority="MANAGER">
                 <li class="nav-item active">
                     <a class="nav-link" href="${pageContext.request.contextPath}/app/tours/orders">
                         <fmt:message key="link.all_orders"/>

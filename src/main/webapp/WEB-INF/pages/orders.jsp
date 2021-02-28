@@ -29,30 +29,35 @@
                     </c:if>
                 </div>
                 <div class="card-body">
-                    <form action="${pageContext.request.contextPath}/app/tours/orders/set-discount"
-                          method="post">
-                        <label>
-                            <span><fmt:message key="orders.discount.step"/> </span>
-                            <input type="text" id="step" name="step" value="${requestScope.discount.step}" class="form-control"
+                    <form class="form-inline"
+                            action="${pageContext.request.contextPath}/app/tours/orders/set-discount" method="post">
+                        <div class="form-group mb-1">
+                            <label for="step"><fmt:message key="orders.discount.step"/></label>
+                            <input type="text" id="step" name="step" value="${requestScope.discount.step}"
+                                   class="form-control mx-2"
                                    required/>
                             <span class="text-danger">
-                                <c:forEach items="${requestScope.errors.stepErrors}" var="error">${error}
-                                    <br></c:forEach>
+                            <c:forEach items="${requestScope.errors.stepErrors}" var="error">
+                                ${error}<br>
+                            </c:forEach>
                             </span>
-                        </label>
-                        <label>
-                            <span><fmt:message key="orders.discount.threshold"/> </span>
-                            <input type="text" id="threshold" name="threshold" value="${requestScope.discount.threshold}" class="form-control"
+                        </div>
+                        <div class="form-group mx-sm-3 mb-1">
+                            <label for="threshold">
+                                <fmt:message key="orders.discount.threshold"/></label>
+                            <input type="text" id="threshold" name="threshold"
+                                   value="${requestScope.discount.threshold}"
+                                   class="form-control mx-2"
                                    required/>
                             <span class="text-danger">
-                                <c:forEach items="${requestScope.errors.thresholdErrors}" var="error">${error}
-                                    <br></c:forEach>
+                            <c:forEach items="${requestScope.errors.thresholdErrors}" var="error">
+                                ${error}<br>
+                            </c:forEach>
                             </span>
-                        </label>
-                        <input class="btn btn-primary" value="<fmt:message key="orders.discount.button.submit"/>"
+                        </div>
+                        <input class="btn btn-primary mb-1" value="<fmt:message key="orders.discount.button.submit"/>"
                                type="submit">
                     </form>
-                <div class="card-body">
                     <c:if test="${!requestScope.orders.isEmpty()}">
                         <table class="table table-striped">
                             <thead>
@@ -129,7 +134,9 @@
                                                             <div class="card-text">
                                                                 <span class="text-primary"><fmt:message
                                                                         key="tours.modal.price"/></span>
-                                                                <span>${order.tour.price}</span>
+                                                                <span><fmt:formatNumber type="number"
+                                                                                        maxFractionDigits="2"
+                                                                                        value="${order.tour.price}"/></span>
                                                             </div>
                                                             <div class="card-text">
                                                                 <span class="text-primary"><fmt:message
@@ -151,10 +158,11 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <div class="btn-group">
-                                                        <ta:hasAuthority authority="ADMIN">
+                                                        <ta:hasAuthority authority="MANAGER">
                                                             <a href="${pageContext.request.contextPath}/app/tours/orders/delete?id=${order.id}&page=${requestScope.currentPage}&size=${requestScope.pageSize}&sortCol=${requestScope.sortCol}&sortDir=${requestScope.sortDir}"
                                                                class="btn btn-danger">
-                                                                <fmt:message key="orders.tour.modal.status.button.delete_order"/>
+                                                                <fmt:message
+                                                                        key="orders.tour.modal.status.button.delete_order"/>
                                                             </a>
                                                         </ta:hasAuthority>
                                                         <button class="btn btn-secondary" data-dismiss="modal"
@@ -226,10 +234,13 @@
                                         </div>
                                     </div>
                                     <!--End user modal window-->
-                                    <td>${order.price}</td>
-                                    <td>${order.discount}</td>
-                                    <td>${order.fixedPrice}</td>
-                                    <td style="width: 20%">
+                                    <td><fmt:formatNumber type="number" maxFractionDigits="2"
+                                                          value="${order.price}"/></td>
+                                    <td><fmt:formatNumber type="number" maxFractionDigits="2"
+                                                          value="${order.discount}"/></td>
+                                    <td><fmt:formatNumber type="number" maxFractionDigits="2"
+                                                          value="${order.fixedPrice}"/></td>
+                                    <td>
                                         <c:if test="${order.pending}">
                                             <div class="btn-group btn-block">
                                                 <a class="btn btn-outline-success"

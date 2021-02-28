@@ -17,7 +17,8 @@ public class HasAuthorityTag extends TagSupport {
     public int doStartTag() {
         User authUser = (User) pageContext.getSession().getAttribute("authUser");
         if (Objects.nonNull(authUser)
-                && authUser.getAuthorities().contains(Authority.valueOf(authority))
+                && (authUser.getAuthorities().contains(Authority.ADMIN) ||
+                authUser.getAuthorities().contains(Authority.valueOf(authority)))
         ) {
             return EVAL_BODY_INCLUDE;
         } else {
