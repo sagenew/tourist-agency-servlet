@@ -150,7 +150,7 @@ public class OrderService {
 
     }
 
-    private static Double calcDiscount(double currentDiscount, double step, double threshold) {
+    public static double calcDiscount(double currentDiscount, double step, double threshold) {
         return Math.min(currentDiscount + step, threshold);
     }
 }

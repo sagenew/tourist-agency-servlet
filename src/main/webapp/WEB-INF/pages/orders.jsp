@@ -96,8 +96,8 @@
                             <tbody>
                             <c:forEach items="${requestScope.orders}" var="order">
                                 <tr>
-                                    <td style="width: 15%">${order.id}</td>
-                                    <td style="width: 25%">
+                                    <td style="width: 10%">${order.id}</td>
+                                    <td style="width: 20%">
                                         <a href="#tourDetailsModal"
                                            data-toggle="modal"
                                            data-target="#tourDetailsModal${order.tour.id}">
@@ -175,7 +175,7 @@
                                         </div>
                                     </div>
                                     <!--End tour modal window-->
-                                    <td style="width: 25%">
+                                    <td style="width: 15%">
                                         <a href="#userDetailsModal"
                                            data-toggle="modal"
                                            data-target="#userDetailsModal${order.user.id}">
@@ -240,7 +240,7 @@
                                                           value="${order.discount}"/></td>
                                     <td><fmt:formatNumber type="number" maxFractionDigits="2"
                                                           value="${order.fixedPrice}"/></td>
-                                    <td>
+                                    <td style="width: 25%">
                                         <c:if test="${order.pending}">
                                             <div class="btn-group btn-block">
                                                 <a class="btn btn-outline-success"
