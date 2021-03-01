@@ -5,10 +5,22 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import javax.sql.DataSource;
 import java.util.ResourceBundle;
 
+/**
+ * Connection pool holder class that handle connection using BasicDataSource
+ */
 class ConnectionPoolHolder {
+    /**
+     * Resource bundle with properties to connect to database
+     */
     private static final ResourceBundle resourceBundle = ResourceBundle.getBundle("database");
+    /**
+     * Singleton instance
+     */
     private static volatile DataSource dataSource;
 
+    /**
+     * @return Set up database connection using properties or return instance if present
+     */
     static DataSource getDataSource() {
         if (dataSource == null) {
             synchronized (ConnectionPoolHolder.class) {

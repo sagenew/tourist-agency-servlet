@@ -1,5 +1,8 @@
 package com.tourism.util.exception;
 
+/**
+ * Runtime exception thrown in dao layer to wrap up SQLException
+ */
 public class DaoException extends RuntimeException {
     public DaoException() {
         super();

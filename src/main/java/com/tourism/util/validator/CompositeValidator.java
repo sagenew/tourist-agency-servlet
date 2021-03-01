@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class CompositeValidator<T> {
+/**
+ * Composite validator that embeds various validators
+ */
+public class CompositeValidator<T> implements Validator<T> {
     private final List<Validator<T>> validatorList = new ArrayList<>();
 
     @SafeVarargs
@@ -12,6 +15,10 @@ public class CompositeValidator<T> {
         this.validatorList.addAll(Arrays.asList(validators));
     }
 
+    /**
+     * @return composite result of embed validators
+     */
+    @Override
     public Result validate(T value) {
         CompositeResult result = new CompositeResult();
         validatorList.stream()

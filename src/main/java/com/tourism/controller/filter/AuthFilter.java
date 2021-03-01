@@ -13,9 +13,14 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Authentication filter
+ */
 public class AuthFilter implements Filter {
     private static final Logger log = LogManager.getLogger();
-
+    /**
+     * Paths that can visit user with ADMIN authority
+     */
     private final List<String> adminPaths = Arrays.asList(
             "/",
             "/index",
@@ -37,7 +42,9 @@ public class AuthFilter implements Filter {
             "/tours/orders/mark-denied",
             "/tours/orders/delete",
             "/tours/orders/set-discount");
-
+    /**
+     * Paths that can visit user with MANAGER authority
+     */
     private final List<String> managerPaths = Arrays.asList(
             "/",
             "/index",
@@ -51,7 +58,9 @@ public class AuthFilter implements Filter {
             "/tours/orders/mark-denied",
             "/tours/orders/delete",
             "/tours/orders/set-discount");
-
+    /**
+     * Paths that can visit user with USER authority
+     */
     private final List<String> userPaths = Arrays.asList(
             "/",
             "/index",
@@ -59,17 +68,24 @@ public class AuthFilter implements Filter {
             "/profile",
             "/tours",
             "/tours/orders/add");
-
+    /**
+     * Paths that can visit unauthenticated user
+     *
+     */
     private final List<String> defaultPaths = Arrays.asList(
             "/",
             "/index",
             "/login",
             "/registration",
             "/tours");
-
+    /**
+     * Map with paths that user with various authorities can visit
+     */
     private final Map<Authority, List<String>> authPaths = new HashMap<>();
 
-
+    /**
+     * Init filter and authentication paths
+     */
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         authPaths.put(Authority.USER, userPaths);
@@ -77,6 +93,11 @@ public class AuthFilter implements Filter {
         authPaths.put(Authority.ADMIN, adminPaths);
     }
 
+    /**
+     * Filter method to check if user is allowed to visit entered path
+     * If not, redirect to login page
+     * If path is invalid, forward to error page
+     */
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;

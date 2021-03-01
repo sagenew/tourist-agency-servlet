@@ -3,9 +3,15 @@ package com.tourism.util.validator;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Composite validation result that embeds various results
+ */
 public class CompositeResult implements Result {
     private final List<Result> resultList = new ArrayList<>();
 
+    /**
+     * @return if all embed results are true
+     */
     @Override
     public boolean isValid() {
         boolean valid = true;
@@ -18,6 +24,9 @@ public class CompositeResult implements Result {
         return valid;
     }
 
+    /**
+     * @return validation result messages as one String
+     */
     @Override
     public String getMessage() {
         StringBuilder stringBuilder = new StringBuilder();

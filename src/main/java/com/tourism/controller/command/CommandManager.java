@@ -14,12 +14,41 @@ import com.tourism.model.service.UserService;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CommandManager {
+/**
+ * Maps all commands and inject necessary service to their constructor
+ *
+ */
 
+public class CommandManager {
+    /**
+     * Singleton instance of class
+     */
     private static CommandManager commandManager;
 
+    /**
+     * @return singleton instance of class
+     */
+    public static CommandManager getInstance() {
+        if (commandManager == null) {
+            synchronized (CommandManager.class) {
+                if (commandManager == null) {
+                    commandManager = new CommandManager();
+                }
+            }
+        }
+        return commandManager;
+    }
+
+    /**
+     * Map of commands
+     *
+     * @see Command
+     */
     private final Map<String, Command> commandMap = new HashMap<>();
 
+    /**
+     * Initialize command map with all paths to commands and necessary services
+     */
     private CommandManager() {
         final UserService userService = new UserService();
         final TourService tourService = new TourService();
@@ -51,17 +80,9 @@ public class CommandManager {
         commandMap.put("/tours/orders/set-discount", new DiscountSetCommand(orderService));
     }
 
-    public static CommandManager getInstance() {
-        if (commandManager == null) {
-            synchronized (CommandManager.class) {
-                if (commandManager == null) {
-                    commandManager = new CommandManager();
-                }
-            }
-        }
-        return commandManager;
-    }
-
+    /**
+     * @return command by name if absent return main page
+     */
     public Command getCommand(String commandName) {
         return commandMap.getOrDefault(commandName, r -> "/index.jsp");
     }

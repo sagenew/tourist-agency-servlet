@@ -19,14 +19,10 @@ public class LocalizationFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
-
         if (request.getParameter("lang") != null) {
-
             log.debug("Changing language on " + request.getParameter("lang"));
-
             request.getSession().setAttribute("lang", request.getParameter("lang"));
         }
-
         filterChain.doFilter(servletRequest, servletResponse);
     }
 

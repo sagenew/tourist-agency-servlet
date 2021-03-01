@@ -2,9 +2,17 @@ package com.tourism.model.dao;
 
 import com.tourism.model.dao.impl.JDBCDaoFactory;
 
+/**
+ * Factory that return dao and connection to use with dao
+ */
 public abstract class DaoFactory {
+    /**
+     * Singleton instance
+     */
     private static DaoFactory daoFactory;
-
+    /**
+     * Get JDBCDaoFactory singleton instance
+     */
     public static DaoFactory getInstance() {
         if (daoFactory == null) {
             synchronized (DaoFactory.class) {
